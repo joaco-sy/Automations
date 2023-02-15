@@ -1,0 +1,32 @@
+---
+- name: Configure LVM
+  hosts: all
+  become: yes
+
+  tasks:
+  - name: Create Physical Volumes
+    pvcreate:
+      devices: ['/dev/sdb', '/dev/sdc']
+
+  - name: Create Volume Group
+    vgcreate:
+      name: vg1
+      devices: ['/dev/sdb', '/dev/sdc']
+
+  - name: Create Logical Volumes
+    lvcreate:
+      vg: vg1
+      lv: lv1
+      size: 5g
+
+  - name: Format the Logical Volume
+    filesystem:
+      fstype: ext4
+      dev: /dev/vg1/lv1
+
+  - name: Mount the Logical Volume
+    mount:
+      path: /mnt/data
+      src: /dev/vg1/lv1
+      fstype: ext4
+      state: mounted
