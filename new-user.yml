@@ -1,0 +1,22 @@
+---
+- name: Create New User
+  hosts: all
+  become: yes
+
+  vars:
+    new_user: mynewuser
+    new_user_password: mynewpassword
+    new_user_shell: /bin/bash
+    new_user_groups:
+      - sudo
+      - www-data
+
+  tasks:
+  - name: Create User
+    user:
+      name: "{{ new_user }}"
+      password: "{{ new_user_password | password_hash('sha512') }}"
+      shell: "{{ new_user_shell }}"
+      groups: "{{ new_user_groups }}"
+      createhome: yes
+      state: present
