@@ -1,0 +1,6 @@
+---
+# variables de A
+source: A-web
+dest: A-web
+home: /home
+bkp_directory: /home/bkp

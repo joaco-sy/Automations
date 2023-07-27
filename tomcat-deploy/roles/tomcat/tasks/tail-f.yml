@@ -1,0 +1,7 @@
+---
+- name: espera el 8080 del tomcat
+  wait_for:
+    port: 8080
+- name: Tail Tomcat logs
+  command: tail -f /usr/share/tomcat/logs/catalina.out
+  timeout: 200

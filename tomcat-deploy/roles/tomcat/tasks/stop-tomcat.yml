@@ -1,0 +1,8 @@
+---
+- name: Stop Tomcat service
+  become: yes
+  systemd:
+    name: tomcat
+    state: stopped
+
+# Para el servicio Tomcat

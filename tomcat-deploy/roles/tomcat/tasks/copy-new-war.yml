@@ -1,0 +1,8 @@
+---
+- name: Nuevo WAR -->> webapps
+  copy:
+    src: '{{ home }}/{{ dest }}.war'
+    dest: '/usr/share/tomcat/webapps/{{ dest }}.war'
+    remote_src: true
+
+    # Copia el nuevo WAR de /home a /usr/share/tomcat/webapps

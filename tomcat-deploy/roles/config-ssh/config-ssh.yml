@@ -1,0 +1,19 @@
+---
+- name: add key
+  host: paja, otros
+  become: true
+  gather_facts: false
+
+  task:
+    - name: creamos directorio de ssh
+      file: 
+        path: '/home/{{ user }}/.ssh'
+        state: directory
+        mode: 0700 
+
+    - name: Add Key
+      autorized_key:
+        user: "{{ user }}"
+        key: "{{ lookup('file, './ssh-key.key') }}"
+        state: present
+

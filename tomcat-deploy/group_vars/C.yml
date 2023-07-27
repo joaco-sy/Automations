@@ -1,0 +1,6 @@
+---
+# variables de C
+source: C-web
+dest: C-web
+home: /home
+bkp_directory: /home/bkp

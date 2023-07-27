@@ -1,0 +1,6 @@
+---
+# variables de B
+source: gedo-web
+dest: B-web
+home: /home
+bkp_directory: /home/bkp

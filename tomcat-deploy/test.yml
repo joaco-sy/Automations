@@ -1,0 +1,4 @@
+---
+- hosts: los-tomcat
+  roles:
+    - tomcat

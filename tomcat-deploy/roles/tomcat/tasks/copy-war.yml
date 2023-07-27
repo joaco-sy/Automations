@@ -1,0 +1,7 @@
+---
+- name: Copia el Nuevo WAR -->> home
+  copy:
+    src: '{{ source }}.war'
+    dest: '{{ home }}/{{ dest }}.war'
+
+# Copia el nuevo .war a /home

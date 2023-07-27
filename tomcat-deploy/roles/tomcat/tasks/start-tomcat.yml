@@ -1,0 +1,12 @@
+---
+- name: Start Tomcat service
+  systemd:
+    name: tomcat
+    state: started
+
+- name: 8080 state up
+  wait_for:
+    port: 8080
+    timeout: 30
+    
+# Inicio de Tomcat

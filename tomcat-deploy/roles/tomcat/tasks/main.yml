@@ -1,0 +1,20 @@
+---
+- name: copy del new_war /home
+  import_tasks: copy-war.yml
+
+- name: parar el servicio tomcat
+  import_tasks: stop-tomcat.yml
+
+- name: copy old_war -> /bkp & delete old
+  import_tasks: backup.yml
+
+- name: copy new_war -> /usr/tomcat
+  import_tasks: copy-new-war.yml
+
+- name: start tomcat & logs
+  import_tasks: start-tomcat.yml
+
+# Para el servicio Tomcat
+# Copia de seguridad del archivo WAR existente
+# Copia del nuevo archivo WAR a la ubicación de Tomcat
+# Inicio de Tomcat y visualización de logs

@@ -1,0 +1,27 @@
+---
+- name: Seleccion del HOST
+  hosts: A, B, C
+  gather_facts: false
+  vars_prompt:
+    - name: selected_group
+      prompt: "Select a group (A-B  //  C): "
+      private: false
+      default: "A-B"
+
+  tasks:
+    - name: Display group
+      debug:
+        var: selected_group
+
+  roles:
+    - role: tomcat
+      when: "'A-B' in selected_group"
+      hots: A
+
+    - role: tomcat
+      when: "'A-B' in selected_group"
+      hots: B
+
+    - role: tomcat
+      when: "'C' in selected_group"
+      host: C

@@ -1,0 +1,28 @@
+---
+- name: Create backup directory
+  file:
+    path: "{{ bkp_directory }}"
+    state: directory
+    mode: '0755'
+
+# Revisar permisos de la carpeta ROOT
+
+- name: Create backup of WAR files
+  copy:
+    src: '/usr/share/tomcat/webapps/{{ dest }}.war'
+    dest: '{{ bkp_directory }}/{{ dest }}.war.bkp'
+    remote_src: true
+
+- name: borrar carpeta old
+  file:
+    state: absent
+    path: '/usr/share/tomcat/webapps/{{ source-file }}/'
+
+- name: borrar .war_old
+  file:
+    state: absent
+    path: '/usr/share/tomcat/webapps/{{ dest }}.war'
+
+# Crea directorio de copia de seguridad
+# Crea copia de seguridad de los archivos WAR
+# Elimina carpeta antigua y .WAR antiguo
